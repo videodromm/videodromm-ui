@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<cinder>
+<block
+	name="Cinder-VDUI"
+	id="com.videodromm.vdui"
+	author="Bruce Lane"
+	license="MIT"
+	summary="VD UI block for Cinder 0.9: imgui wrapper"
+	url="https://github.com/videodromm/Cinder-VDUI"
+	git="git://github.com/videodromm/Cinder-VDUI.git"
+	>
+	<supports os="msw" />
+	<requires>com.wk.websocketpp</requires>
+	<includePath>include</includePath>
+	<includePath>src</includePath>
+	<headerPattern>include/*.h</headerPattern>
+	<sourcePattern>src/*.cpp</sourcePattern>
+	<sourcePattern>src/*.c</sourcePattern>
+	<platform os="msw">
+		<libraryPath>lib</libraryPath>
+		<requires>com.videodromm.vd</requires>
+		<requires>ocornut.imgui</requires>
+		<requires>fr.batchass.spout</requires>
+		<requires>mb.cinder.midi2</requires>
+		<requires>org.libcinder.OSC</requires>
+	</platform>
+</block>
+<template>templates/VDUI/template.xml</template>
+</cinder>
