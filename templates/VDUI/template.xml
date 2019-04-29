@@ -9,6 +9,6 @@
 	<requires>mb.cinder.midi2</requires>
 	<source replaceContents="true" replaceName="true">src/_TBOX_PREFIX_App.cpp</source>
 	<asset>assets/0.jpg</asset>
-	<asset>assets/shadertoy.min</asset>
+	<asset>assets/textures.xml</asset>
 </template>
 </cinder>
