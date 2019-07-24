@@ -216,10 +216,11 @@ void VDUIAnimation::Run(const char* title) {
 			{
 				setValue(ctrl, localValues[ctrl]);
 			}
+			/* todo crash:
 			ImGui::DragFloat("minzm", &minZoom, 0.1f, getMinUniformValueByIndex(ctrl), getMaxUniformValueByIndex(ctrl));
 			ImGui::SameLine();
 			ImGui::DragFloat("maxzm", &maxZoom, 0.1f, getMinUniformValueByIndex(ctrl), getMaxUniformValueByIndex(ctrl));
-
+			*/
 			// rotation speed 
 			/*ctrl = mVDSettings->IROTATIONSPEED;
 			if (ImGui::Button("a##rotationspeed")) { toggleAuto(ctrl); }

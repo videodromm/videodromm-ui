@@ -16,7 +16,7 @@ void VDUIAudio::Run(const char* title) {
 	sprintf(buf, "%s##inpt", mVDSession->getInputTextureName(0).c_str());
 	ImGui::Begin(buf);
 	{
-		if (ImGui::CollapsingHeader("Color", NULL, true, true))
+		if (ImGui::CollapsingHeader("Audio", NULL, true, true))
 		{
 		ImGui::PushItemWidth(mVDSettings->mPreviewFboWidth*2);
 		ImGui::Text("Position %d", mVDSession->getPosition(0));
