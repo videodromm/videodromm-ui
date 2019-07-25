@@ -11,7 +11,12 @@ VDUIRender::VDUIRender(VDSettingsRef aVDSettings, VDSessionRef aVDSession) {
 	maxContour = getMaxUniformValueByIndex(26);
 	iResolutionX = (int)getValueByName("iResolutionX");
 	iResolutionY = (int)getValueByName("iResolutionY");
+	iOutW = getIntValue(mVDSettings->IOUTW);
+	iOutH = getIntValue(mVDSettings->IOUTH);
+}
 
+int VDUIRender::getIntValue(unsigned int aCtrl) {
+	return mVDSession->getIntUniformValueByIndex(aCtrl);
 }
 float VDUIRender::getValueByName(string aCtrlName) {
 	return mVDSession->getFloatUniformValueByName(aCtrlName);
@@ -21,6 +26,9 @@ float VDUIRender::getValue(unsigned int aCtrl) {
 }
 void VDUIRender::setValue(unsigned int aCtrl, float aValue) {
 	mVDSession->setFloatUniformValueByIndex(aCtrl, aValue);
+}
+void VDUIRender::setIntValue(unsigned int aCtrl, int aValue) {
+	mVDSession->setIntUniformValueByIndex(aCtrl, aValue);
 }
 void VDUIRender::toggleAuto(unsigned int aCtrl) {
 	mVDSession->toggleAuto(aCtrl);
@@ -56,6 +64,17 @@ void VDUIRender::Run(const char* title) {
 	{
 		int hue = 0;
 		ImGui::PushItemWidth(mVDSettings->mPreviewFboWidth);
+		// output resolution
+		ctrl = mVDSettings->IOUTW;
+		if (ImGui::DragInt("iOutW", &iOutW, 1.0f, (int)getMinUniformValueByIndex(ctrl), (int)getMaxUniformValueByIndex(ctrl)))
+		{
+			setIntValue(ctrl, iOutW);
+		}
+		ctrl = mVDSettings->IOUTH;
+		if (ImGui::DragInt("iOutH", &iOutH, 1.0f, (int)getMinUniformValueByIndex(ctrl), (int)getMaxUniformValueByIndex(ctrl)))
+		{
+			setIntValue(ctrl, iOutH);
+		}
 		// iResolution
 		ctrl = mVDSettings->IRESX;
 		//iResolutionX = getValueByName("iResolutionX");

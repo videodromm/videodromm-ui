@@ -34,7 +34,8 @@ public:
 	void update() override;
 	void draw() override;
 	void cleanup() override;
-	void setUIVisibility(bool visible);
+	void toggleUIVisibility() { mVDSession->toggleUI(); };
+	void toggleCursorVisibility(bool visible);
 private:
 	// Settings
 	VDSettingsRef					mVDSettings;
@@ -98,7 +99,7 @@ void _TBOX_PREFIX_App::positionRenderWindow() {
 	setWindowPos(mVDSettings->mRenderX, mVDSettings->mRenderY);
 	setWindowSize(mVDSettings->mRenderWidth, mVDSettings->mRenderHeight);
 }
-void _TBOX_PREFIX_App::setUIVisibility(bool visible)
+void _TBOX_PREFIX_App::toggleCursorVisibility(bool visible)
 {
 	if (visible)
 	{
@@ -165,10 +166,14 @@ void _TBOX_PREFIX_App::keyDown(KeyEvent event)
 			// quit the application
 			quit();
 			break;
-		case KeyEvent::KEY_h:
+		case KeyEvent::KEY_c:
 			// mouse cursor and ui visibility
 			mVDSettings->mCursorVisible = !mVDSettings->mCursorVisible;
-			setUIVisibility(mVDSettings->mCursorVisible);
+			toggleCursorVisibility(mVDSettings->mCursorVisible);
+			break;
+		case KeyEvent::KEY_h:
+			// ui visibility
+			toggleUIVisibility();
 			break;
 		}
 	}
@@ -196,10 +201,12 @@ void _TBOX_PREFIX_App::draw()
 
 	// Spout Send
 	mSpoutOut.sendViewport();
-	mVDUI->Run("UI", (int)getAverageFps());
-	if (mVDUI->isReady()) {
+	if (mVDSession->showUI()) {
+		mVDUI->Run("UI", (int)getAverageFps());
+		if (mVDUI->isReady()) {
+		}
+		getWindow()->setTitle(mVDSettings->sFps + " fps VDUI");
 	}
-	getWindow()->setTitle(mVDSettings->sFps + " fps VDUI");
 }
 
 void prepareSettings(App::Settings *settings)
