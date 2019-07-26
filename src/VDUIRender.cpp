@@ -66,25 +66,25 @@ void VDUIRender::Run(const char* title) {
 		ImGui::PushItemWidth(mVDSettings->mPreviewFboWidth);
 		// output resolution
 		ctrl = mVDSettings->IOUTW;
-		if (ImGui::DragInt("iOutW", &iOutW, 1.0f, (int)getMinUniformValueByIndex(ctrl), (int)getMaxUniformValueByIndex(ctrl)))
+		if (ImGui::SliderInt("iOutW", &iOutW, 320, 5000))
 		{
 			setIntValue(ctrl, iOutW);
 		}
 		ctrl = mVDSettings->IOUTH;
-		if (ImGui::DragInt("iOutH", &iOutH, 1.0f, (int)getMinUniformValueByIndex(ctrl), (int)getMaxUniformValueByIndex(ctrl)))
+		if (ImGui::SliderInt("iOutH", &iOutH, 480, 2000))
 		{
 			setIntValue(ctrl, iOutH);
 		}
 		// iResolution
 		ctrl = mVDSettings->IRESX;
 		//iResolutionX = getValueByName("iResolutionX");
-		if (ImGui::DragInt("iResolutionX", &iResolutionX, 1.0f, (int)getMinUniformValueByIndex(ctrl), (int)getMaxUniformValueByIndex(ctrl)))
+		if (ImGui::SliderInt("iResolutionX", &iResolutionX, (int)getMinUniformValueByIndex(ctrl), (int)getMaxUniformValueByIndex(ctrl)))
 		{
 			setValue(ctrl, (float)iResolutionX);
 		}
 		ctrl = mVDSettings->IRESY;
 		//iResolutionY = getValueByName("iResolutionY");
-		if (ImGui::DragInt("iResolutionY", &iResolutionY, 1.0f, (int)getMinUniformValueByIndex(ctrl), (int)getMaxUniformValueByIndex(ctrl)))
+		if (ImGui::SliderInt("iResolutionY", &iResolutionY, (int)getMinUniformValueByIndex(ctrl), (int)getMaxUniformValueByIndex(ctrl)))
 		{
 			setValue(ctrl, (float)iResolutionY);
 		}
